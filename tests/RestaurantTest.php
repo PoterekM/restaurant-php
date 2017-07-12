@@ -84,12 +84,27 @@
 
         function testDeleteAll()
         {
-            $name = "Taco Bell";
-            $name_2 = "Pancake House";
-            $test_name = new Restaurant($name);
-            $test_name->save();
-            $test_name_2 = new Cuisine($name_2);
-            $test_name_2->save();
+            $cuisine = "pho jasmine";
+            $test_cuisine = new Cuisine($cuisine);
+            $test_cuisine->save();
+            $cuisine_id = $test_cuisine->getId();
+
+
+            $name = "Fancy Pants: eat my shorts";
+            $address = "333 NE 33rd Ave";
+            $hours = "12pm-10pm";
+            $cost = "super expensive";
+            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost);
+            $test_restaurant_name->save();
+
+            $name_2 = "Fancy Pants: eat my shorts";
+            $address = "333 NE 33rd Ave";
+            $hours = "12pm-10pm";
+            $cost = "super expensive";
+            $test_restaurant_name_2 = new Restaurant($name_2, $address, $hours, $cost);
+            $test_restaurant_name_2->save();
+
+
 
             Restaurant::deleteAll();
             $result = Restaurant::getAll();
