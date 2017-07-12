@@ -39,6 +39,24 @@
                 }
             }
 
+            static function find($search_id)
+            {
+                $found_cuisine = null;
+                $returned_cuisines = $GLOBALS['DB']->prepare("SELECT * FROM cuisine WHERE id = :id");
+                $returned_cuisines->bindParam(':id', $search_id, PDO::PARAM_STR);
+                $returned_cuisines->execute();
+                foreach($returned_cuisines as $cuisine) {
+                    // style is our property up above
+                    //name is from our table 
+                    $style = $cuisine['name'];
+                    $id = $cuisine['id'];
+                    if ($id == $search_id) {
+                        $found_cuisine = new Cuisine($style, $id);
+                    }
+                }
+                return $found_cuisine;
+            }
+
 
 
 //There maybe a bad smell in this function too

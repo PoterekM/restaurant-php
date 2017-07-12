@@ -73,6 +73,19 @@
         }
 
 
+        function testFind()
+        {
+            $cuisine = "Dim Sum";
+            $cuisine_2 = "Chinese";
+            $test_cuisine = new Cuisine($cuisine);
+            $test_cuisine->save();
+            $test_cuisine_2 = new Cuisine($cuisine_2);
+            $test_cuisine_2->save();
+
+            $result = Cuisine::find($test_cuisine->getId());
+
+            $this->assertEquals($test_cuisine, $result);
+        }
 
         function testDeleteAll()
         {
