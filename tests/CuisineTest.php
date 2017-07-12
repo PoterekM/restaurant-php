@@ -15,7 +15,23 @@
 
     class CuisineTest extends PHPUnit_Framework_TestCase
     {
-        function getId()
+
+        protected function tearDown()
+        {
+            Cuisine::deleteAll();
+        }
+
+        function testSave()
+        {
+            $cuisine = "turds";
+            $test_cuisine = new Cuisine($cuisine);
+
+            $executed = $test_cuisine->save();
+
+            $this->assertTrue($executed, "Task not successfully saved to database");
+        }
+
+        function testGetId()
         {
             //Arrange
             $cuisine = "Lebanese";
@@ -56,5 +72,21 @@
             $this->assertEquals($new_cuisine, $result);
         }
 
+
+
+        function testDeleteAll()
+        {
+            $cuisine = "Cereal";
+            $cuisine_2 = "Pancakes";
+            $test_cuisine = new Cuisine($cuisine);
+            $test_cuisine->save();
+            $test_cuisine_2 = new Cuisine($cuisine_2);
+            $test_cuisine_2->save();
+
+            Cuisine::deleteAll();
+            $result = Cuisine::getAll();
+
+            $this->assertEquals([], $result);
+        }
     }
 ?>
