@@ -41,10 +41,20 @@
 
         function testGetName()
         {
-            $name = "Pok Pok";
-            $test_name = new Restaurant($name);
+            $cuisine = "Pok Pok";
+            $test_cuisine = new Cuisine($cuisine);
+            $test_cuisine->save();
+            $cuisine_id = $test_cuisine->getId();
 
-            $result = $test_name->getName();
+            $name = "Fancy Pants: eat my shorts";
+            $address = "333 NE 33rd Ave";
+            $hours = "12pm-10pm";
+            $cost = "super expensive";
+            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost);
+            $test_restaurant_name->save();
+
+
+            $result = $test_restaurant_name->getName();
 
             $this->assertEquals($name, $result);
         }
@@ -52,16 +62,24 @@
         function testSetName()
         {
             //Arrange
-            $name = "pho jasmine";
-            $test_name = new Restaurant($name);
-            $new_name = "Homegrown Smoker";
+            $cuisine = "pho jasmine";
+            $test_cuisine = new Cuisine($cuisine);
+            $test_cuisine->save();
+            $cuisine_id = $test_cuisine->getId();
 
-            //Act
-            $test_name->setName($new_name);
-            $result = $test_name->getName();
+
+            $name = "Fancy Pants: eat my shorts";
+            $address = "333 NE 33rd Ave";
+            $hours = "12pm-10pm";
+            $cost = "super expensive";
+            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost);
+            $test_restaurant_name->save();
+
+            $test_restaurant_name->setName("Boogah");
+            $result = $test_restaurant_name->getName();
 
             //Assert
-            $this->assertEquals($new_name, $result);
+            $this->assertEquals("Boogah", $result);
         }
 
         function testDeleteAll()

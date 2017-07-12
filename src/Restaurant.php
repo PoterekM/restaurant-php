@@ -67,6 +67,27 @@
                 }
             }
 
+            // function delete()
+            // {
+            //     $executed = $GLOBALS['DB']->exec("")
+            // }
+
+            static function getAll()
+            {
+                $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants;");
+                $restaurants = array();
+                foreach($returned_restaurants as $restaurant) {
+                    $name = $restaurant['name'];
+                    $address = $restaurant['address'];
+                    $hours = $restaurant['hours'];
+                    $cost = $restaurant['cost'];
+                    $new_restaurant = new Restaurant($name, $address, $hours, $cost);
+                    array_push($restaurants, $new_restaurant);
+                    ///Michelle is worried about not getting id in here
+                }
+                return $restaurants;
+            }
+
             static function deleteAll()
             {
                 $executed = $GLOBALS['DB']->exec("DELETE FROM restaurants;");
