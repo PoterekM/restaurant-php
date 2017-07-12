@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>cuisine</title>
+    </head>
+    <body>
+        <h1>{{ cuisine.getStyle }}</h1>
+     {% if cuisines is not empty %}
+         <p>poop:</p>
+         <ul>
+             {% for cuisine in cuisines %}
+                 <li>{{ task.getStyle }}</li>
+             {% endfor %}
+         </ul>
+     {% endif %}
+
+    </body>
+</html>

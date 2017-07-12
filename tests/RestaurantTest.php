@@ -32,9 +32,9 @@
             $hours = "12pm-10pm";
             $cost = "super expensive";
             $test_restaurant_name = new Restaurant($name, $address, $hours, $cost);
-            $test_restaurant_name->save();
-
             $executed = $test_restaurant_name->save();
+
+
 
             $this->assertTrue($executed, "Task not successfully saved to database");
         }
