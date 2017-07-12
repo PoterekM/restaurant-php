@@ -5,12 +5,13 @@
         <title>cuisine</title>
     </head>
     <body>
-        <h1>{{ cuisine.getStyle }}</h1>
+        <p>Heres the food:</p>
+
      {% if cuisines is not empty %}
          <p>poop:</p>
          <ul>
              {% for cuisine in cuisines %}
-                 <li>{{ task.getStyle }}</li>
+                 <li>{{ cuisine.getCuisine }}</li>
              {% endfor %}
          </ul>
      {% endif %}

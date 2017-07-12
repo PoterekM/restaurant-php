@@ -1,16 +1,25 @@
-<!DOCTYPE html>
+
 <html>
     <head>
         <title>Cuisine</title>
     </head>
     <body>
         <h1>Welcome to your lunch tracker</h1>
-        <form action="/cuisine" method="post">
+        <form action="/" method="post">
            <label for="cuisine">Cuisine type:</label>
            <input id="cuisine" name="cuisine" type="text">
 
            <button type="submit">Add cuisine</button>
        </form>
+
+       {% if cuisines is not empty %}
+        <p>Heres the food:</p>
+           <ul>
+               {% for cuisine in cuisines %}
+                   <li>{{ cuisine.getCuisine }}</li>
+               {% endfor %}
+           </ul>
+       {% endif %}
 
     </body>
 </html>

@@ -10,6 +10,8 @@
             {
                 $this->style = $style;
                 $this->id = $id;
+                
+
             }
 
             function getId()
@@ -47,7 +49,7 @@
                 $returned_cuisines->execute();
                 foreach($returned_cuisines as $cuisine) {
                     // style is our property up above
-                    //name is from our table 
+                    //name is from our table
                     $style = $cuisine['name'];
                     $id = $cuisine['id'];
                     if ($id == $search_id) {
@@ -67,7 +69,6 @@
                 foreach($returned_cuisines as $cuisine) {
                     $style = $cuisine['style'];
                     $id = $cuisine['id'];
-                    var_dump($id);
                     $new_cuisine = new Cuisine($style, $id);
                     array_push($cuisines, $new_cuisine);
                 }

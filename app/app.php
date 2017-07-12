@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__."/../vendor/autoload.php";
     require_once __DIR__."/../src/Cuisine.php";
-    require_once __DIR__."/../src/Restauraunt.php";
+    require_once __DIR__."/../src/Restaurant.php";
 
 
     $server = 'mysql:host=localhost:8889;dbname=food';
@@ -11,6 +11,10 @@
 
     $app = new Silex\Application();
 
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
+
+
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
     ));
@@ -19,16 +23,19 @@
         return $app['twig']->render('index.html.twig', array(Cuisine::getAll()));
     });
 
-    $app->get("/cuisine", function() use($app) {
-        return $app['twig']->render('cuisine.html.twig', array('restaurants' => Restaurant::getAll()));
+    // $app->get("/", function() use($app) {
+    //     return $app['twig']->render('cuisine.html.twig', array('cuisines' => Cuisine::getAll()));
+    // });
+
+    $app->post("/", function() use ($app) {
+        $cuisine = $_POST['cuisine'];
+        $new_cuisine = new Cuisine($cuisine);
+        var_dump($new_cuisine);
+        $new_cuisine->save();
+        return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
+
     });
 
-    $app->post("/cuisine", function() use ($app) {
-        $style = $_POST['style'];
-        $cuisine = new Cuisine($style, $id = null);
-        $cuisine->save();
-        return $app['twig']->render('cuisine.html.twig', array('cuisines' => Cuisine::getAll()));
-    });
 
     return $app;
 ?>
