@@ -74,7 +74,7 @@
                 }
                 return $cuisines;
             }
-            // $style-name above is from the name in the table in database
+            // $style-name above is from the name in the table
 
 
 

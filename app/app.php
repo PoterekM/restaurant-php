@@ -38,6 +38,11 @@
 
     });
 
+    $app->post("/delete_cuisine", function() use ($app) {
+        Cuisine::deleteAll();
+        return $app['twig']->render('delete_cuisine.html.twig');
+    });
+
 
     return $app;
 ?>
