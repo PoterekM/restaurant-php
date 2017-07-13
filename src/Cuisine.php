@@ -10,7 +10,7 @@
             {
                 $this->style = $style;
                 $this->id = $id;
-                
+
 
             }
 
@@ -67,14 +67,14 @@
                 $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisine;");
                 $cuisines = array();
                 foreach($returned_cuisines as $cuisine) {
-                    $style = $cuisine['style'];
+                    $style = $cuisine['name'];
                     $id = $cuisine['id'];
                     $new_cuisine = new Cuisine($style, $id);
                     array_push($cuisines, $new_cuisine);
                 }
                 return $cuisines;
             }
-
+            // $style-name above is from the name in the table in database
 
 
 

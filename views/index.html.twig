@@ -12,14 +12,11 @@
            <button type="submit">Add cuisine</button>
        </form>
 
-       {% if cuisines is not empty %}
-        <p>Heres the food:</p>
-           <ul>
-               {% for cuisine in cuisines %}
-                   <li>{{ cuisine.getCuisine }}</li>
-               {% endfor %}
-           </ul>
-       {% endif %}
-
+            <p>Heres the food:</p>
+            <ul>
+                {% for cuisine in cuisines %}
+                    <li>{{ cuisine.getCuisine }}</li>
+                {% endfor %}
+                 </ul>
     </body>
 </html>

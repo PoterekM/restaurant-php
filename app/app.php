@@ -30,8 +30,10 @@
     $app->post("/", function() use ($app) {
         $cuisine = $_POST['cuisine'];
         $new_cuisine = new Cuisine($cuisine);
-        var_dump($new_cuisine);
+        var_dump($cuisine);
+
         $new_cuisine->save();
+        var_dump($new_cuisine);
         return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
 
     });
