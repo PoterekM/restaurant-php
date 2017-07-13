@@ -26,6 +26,7 @@
           <ul>
               {% for restaurant in restaurants %}
               <li> {{ restaurant.getName }}</li>
+              <li> {{ restaurant.getAddress }}</li>
               {% endfor %}
           </ul>
        <form action="/delete_cuisine" method="post">

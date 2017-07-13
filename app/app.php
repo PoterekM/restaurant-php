@@ -38,7 +38,7 @@
     });
 
     $app->post("/add_restaurant", function() use ($app) {
-        $name = $_POST['restaurant_name'];
+        $name = $_POST['name'];
         var_dump($name);
         $address = $_POST['address'];
         var_dump($address);
@@ -46,6 +46,7 @@
         $cost = $_POST['cost'];
         $restaurant = new Restaurant($name, $address, $hours, $cost);
         $restaurant->save();
+        var_dump($restaurant);
         return $app['twig']->render('add_restaurant.html.twig', array('restaurants' =>Restaurant::getAll()));
 
     });
