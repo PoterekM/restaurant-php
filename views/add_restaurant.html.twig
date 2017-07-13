@@ -9,6 +9,11 @@
          <input id="name" name="name" type="text">
          <label for="address">address:</label>
          <input id="address" name="address" type="text">
+         <label for="hours">hours:</label>
+         <input id="hours" name="hours" type="text">
+         <label for="cost">cost:</label>
+         <input id="cost" name="cost" type="text">
+
          <button type="submit">Add Restaurant</button>
         </form>
 
@@ -23,13 +28,16 @@
     </form>
 
           <p>Heres the places:</p>
-          <ul>
               {% for restaurant in restaurants %}
-              <li> {{ restaurant.getName }}</li>
-              <li> {{ restaurant.getAddress }}</li>
+              <h4> {{ restaurant.getName }}</h4>
+              <ul>
+              <li>Address: {{ restaurant.getAddress }}</li>
+              <li>Hours: {{ restaurant.getHours }}</li>
+              <li>Cost: {{ restaurant.getCost }}</li>
+            </ul>
+
               {% endfor %}
-          </ul>
-       <form action="/delete_cuisine" method="post">
+       <form action="/cuisines" method="post">
               <button type="submit" name="button">Clear!</button>
       </form>
     </body>
