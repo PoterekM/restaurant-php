@@ -9,17 +9,17 @@
            <label for="cuisine">Cuisine type:</label>
            <input id="cuisine" name="cuisine" type="text">
 
-           <button type="submit">Add cuisine</button>
-       </form>
+         <button type="submit">Add cuisine</button>
+     </form>
 
-            <p>Heres the food:</p>
-            <ul>
-                {% for cuisine in cuisines %}
-                    <li>{{ cuisine.getCuisine }}</li>
-                {% endfor %}
-                 </ul>
-        <form action="/delete_cuisine" method="post">
-            <button type="submit" name="button">Clear!</button>
-        </form>
+          <!-- <p>Heres the food:</p>
+          <ul>
+              {% for cuisine in cuisines %}
+              <li>{{ cuisine.getCuisine }}</li>
+              {% endfor %}
+          </ul>
+       <form action="/delete_cuisine" method="post">
+              <button type="submit" name="button">Clear!</button>
+      </form> -->
     </body>
 </html>

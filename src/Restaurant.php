@@ -67,6 +67,17 @@
                 }
             }
 
+        //     function save()
+        // {
+        //     $executed = $GLOBALS['DB']->exec("INSERT INTO tasks (description, category_id, due_date) VALUES ('{$this->getDescription()}', {$this->getCategoryId()},'{$this->getDueDate()}')");
+        //     if ($executed) {
+        //         $this->id = $GLOBALS['DB']->lastInsertId();
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // }
+
             // function delete()
             // {
             //     $executed = $GLOBALS['DB']->exec("")
@@ -77,7 +88,7 @@
                 $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants;");
                 $restaurants = array();
                 foreach($returned_restaurants as $restaurant) {
-                    $name = $restaurant['name'];
+                    $name = $restaurant['restaurant_name'];
                     $address = $restaurant['address'];
                     $hours = $restaurant['hours'];
                     $cost = $restaurant['cost'];

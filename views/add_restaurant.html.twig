@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Cuisine</title>
+    </head>
+    <body>
+        <h1>Welcome to your lunch tracker</h1>
+        <form action="/add_restaurant" method="post">
+         <label for="name">Greasey spoon:</label>
+         <input id="name" name="name" type="text">
+         <label for="address">address:</label>
+         <input id="address" name="address" type="text">
+         <button type="submit">Add Restaurant</button>
+        </form>
+
+        <p>Heres the food:</p>
+        <ul>
+            {% for cuisine in cuisines %}
+            <li>{{ cuisine.getCuisine }}</li>
+            {% endfor %}
+        </ul>
+     <form action="/delete_cuisine" method="post">
+            <button type="submit" name="button">Clear!</button>
+    </form>
+
+          <p>Heres the places:</p>
+          <ul>
+              {% for restaurant in restaurants %}
+              <li> {{ restaurant.getName }}</li>
+              {% endfor %}
+          </ul>
+       <form action="/delete_cuisine" method="post">
+              <button type="submit" name="button">Clear!</button>
+      </form>
+    </body>
+</html>
