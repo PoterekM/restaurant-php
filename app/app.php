@@ -8,9 +8,11 @@
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
+    use Symfony\Component\Debug\Debug;
+    Debug::enable();
 
     $app = new Silex\Application();
-
+$app['debug'] = true;
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
@@ -38,13 +40,14 @@
     });
 
     $app->post("/add_restaurant", function() use ($app) {
-        $name = $_POST['name'];
+        $restaurant = $_POST['name'];
         var_dump($name);
         $address = $_POST['address'];
         var_dump($address);
         $hours = $_POST['hours'];
         $cost = $_POST['cost'];
-        $restaurant = new Restaurant($name, $address, $hours, $cost);
+        $cuisine_id = $_POST['cuisine_id'];
+        $restaurant = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
         $restaurant->save();
         var_dump($restaurant);
         return $app['twig']->render('add_restaurant.html.twig', array('restaurants' =>Restaurant::getAll()));
