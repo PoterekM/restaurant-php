@@ -51,14 +51,19 @@
 
     });
 
+    $app->get("/add_restaurants/{id}", function($id) use ($app) {
+        $new_cuisine = Cuisine::find($id);
+        return $app['twig']->render('add_restaurants.html.twig', array('cuisines' => $new_cuisine, 'restaurants' => $restaurant->getTasks()));
+    });
+
     $app->post("/delete_cuisine", function() use ($app) {
         Cuisine::deleteAll();
         return $app['twig']->render('delete_cuisine.html.twig');
     });
 
-    $app->post("/cuisines", function() use ($app) {
+    $app->post("/delete_restaurants", function() use ($app) {
         Restaurant::deleteAll();
-        return $app['twig']->render('cuisine.html.twig');
+        return $app['twig']->render('delete_restaurants.html.twig');
     });
 
     return $app;

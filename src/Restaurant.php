@@ -6,13 +6,15 @@
             private $address;
             private $hours;
             private $cost;
+            private $cuisine_id;
 
-            function __construct($name, $address, $hours, $cost)
+            function __construct($name, $address, $hours, $cost, $cuisine_id)
             {
                 $this->name = $name;
                 $this->address = $address;
                 $this->hours = $hours;
                 $this->cost = $cost;
+                $this->cuisine_id = $cuisine_id;
             }
 
             function setName($new_name)
@@ -55,10 +57,19 @@
                 return $this->cost;
             }
 
+            function setCuisineId($new_ciusine_id)
+            {
+                $this->cuisine_id = $new_ciusine_id;
+            }
+
+            function getCuisineId()
+            {
+                return $this->cuisine_id;
+            }
             function save()
             {
                 //insert into the table cuisine and add to the column name
-                $executed = $GLOBALS['DB']->exec("INSERT INTO restaurants (restaurant_name, address, hours, cost) VALUES ('{$this->getName()}', '{$this->getAddress()}', '{$this->getHours()}', '{$this->getCost()}');");
+                $executed = $GLOBALS['DB']->exec("INSERT INTO restaurants (restaurant_name, address, hours, cost, cuisine_id) VALUES ('{$this->getName()}', '{$this->getAddress()}', '{$this->getHours()}', '{$this->getCost()}', {$this->getCuisineId()});");
                 if ($executed) {
                     $this->id = $GLOBALS['DB']->lastInsertId();
                     return true;
@@ -66,22 +77,6 @@
                     return false;
                 }
             }
-
-        //     function save()
-        // {
-        //     $executed = $GLOBALS['DB']->exec("INSERT INTO tasks (description, category_id, due_date) VALUES ('{$this->getDescription()}', {$this->getCategoryId()},'{$this->getDueDate()}')");
-        //     if ($executed) {
-        //         $this->id = $GLOBALS['DB']->lastInsertId();
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
-        // }
-
-            // function delete()
-            // {
-            //     $executed = $GLOBALS['DB']->exec("")
-            // }
 
             static function getAll()
             {
@@ -92,7 +87,8 @@
                     $address = $restaurant['address'];
                     $hours = $restaurant['hours'];
                     $cost = $restaurant['cost'];
-                    $new_restaurant = new Restaurant($name, $address, $hours, $cost);
+                    $cuisine_id = $restaurant['cuisine_id'];
+                    $new_restaurant = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
                     array_push($restaurants, $new_restaurant);
                     ///Michelle is worried about not getting id in here
                 }

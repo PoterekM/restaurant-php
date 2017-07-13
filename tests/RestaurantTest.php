@@ -6,6 +6,7 @@
     */
 
     require_once "src/Restaurant.php";
+    require_once "src/Cuisine.php";
 
     $server = 'mysql:host=localhost:8889;dbname=food_test';
     $username = 'root';
@@ -19,6 +20,7 @@
         protected function tearDown()
         {
             Restaurant::deleteAll();
+            Cuisine::deleteAll();
         }
 
         function testSave()
@@ -31,7 +33,7 @@
             $address = "333 NE 33rd Ave";
             $hours = "12pm-10pm";
             $cost = "super expensive";
-            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost);
+            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
             $executed = $test_restaurant_name->save();
 
 
@@ -50,7 +52,7 @@
             $address = "333 NE 33rd Ave";
             $hours = "12pm-10pm";
             $cost = "super expensive";
-            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost);
+            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
             $test_restaurant_name->save();
 
 
@@ -72,7 +74,7 @@
             $address = "333 NE 33rd Ave";
             $hours = "12pm-10pm";
             $cost = "super expensive";
-            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost);
+            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
             $test_restaurant_name->save();
 
             $test_restaurant_name->setName("Boogah");
@@ -94,14 +96,14 @@
             $address = "333 NE 33rd Ave";
             $hours = "12pm-10pm";
             $cost = "super expensive";
-            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost);
+            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
             $test_restaurant_name->save();
 
             $name_2 = "Fancy Pants: eat my shorts";
             $address = "333 NE 33rd Ave";
             $hours = "12pm-10pm";
             $cost = "super expensive";
-            $test_restaurant_name_2 = new Restaurant($name_2, $address, $hours, $cost);
+            $test_restaurant_name_2 = new Restaurant($name_2, $address, $hours, $cost, $cuisine_id);
             $test_restaurant_name_2->save();
 
 

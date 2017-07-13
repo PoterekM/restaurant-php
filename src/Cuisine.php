@@ -59,6 +59,20 @@
                 return $found_cuisine;
             }
 
+            function getRestaurant()
+            {
+                $restaurants = Array();
+                $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE id = {$this->getId()};");
+                foreach($returned_restaurants as $restaurant) {
+                    $name = $restaurant['name'];
+                    $address = $restaurant['address'];
+                    $hours = $restaurant['hours'];
+                    $cost = $restaurant['cost'];
+                    $new_restaurant = new Restaurant($name, $address, $hours, $cost);
+                    array_push($restaurants, $new_restaurant);
+                }
+                return $restaurants;
+            }
 
 
 //There maybe a bad smell in this function too

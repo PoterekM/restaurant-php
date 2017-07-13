@@ -6,6 +6,7 @@
     */
 
     require_once "src/Cuisine.php";
+    require_once "src/Restaurant.php";
 
     $server = 'mysql:host=localhost:8889;dbname=food_test';
     $username = 'root';
@@ -19,6 +20,7 @@
         protected function tearDown()
         {
             Cuisine::deleteAll();
+            Restaurant::deleteAll();
         }
 
         function testSave()
@@ -100,6 +102,38 @@
             $result = Cuisine::getAll();
 
             $this->assertEquals([], $result);
+        }
+
+        function testGetRestaurant()
+        {
+            //Arrange
+            $cuisine = "KFC";
+            $test_cuisine = new Cuisine($cuisine);
+            $test_cuisine->save();
+
+            $cuisine_id = $test_cuisine->getId();
+
+            $name = "ihop";
+            $address = "444 NE 38th";
+            $hours = "12-8";
+            $cost = "$$$$";
+            // $cuisine_id =
+            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
+            $test_restaurant_name->save();
+
+            $name2 = "turds";
+            $address2 = "420 NE 38th";
+            $hours2 = "12-12";
+            $cost2 = "$$$$";
+            $test_restaurant_name2 = new Restaurant($name2, $address2, $hours2, $cost2, $cuisine_id);
+            $test_restaurant_name2->save();
+
+            //Act
+            $result = $test_cuisine->getRestaurant();
+            // $test_cuisine->Restaurant($test_restaurant_name2);
+
+            //Assert
+            $this->assertEquals([$name, $name2], $result);
         }
     }
 ?>
