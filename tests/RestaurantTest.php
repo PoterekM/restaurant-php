@@ -23,23 +23,45 @@
             Cuisine::deleteAll();
         }
 
+        // function testSave()
+        // {
+        //     $cuisine = "turds";
+        //     $test_cuisine = new Cuisine($cuisine);
+        //     $executed = $test_cuisine->save();
+        //
+        //     $name = "Fancy Pants: eat my shorts";
+        //     $address = "333 NE 33rd Ave";
+        //     $hours = "12pm-10pm";
+        //     $cost = "super expensive";
+        //     $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
+        //
+        //     $executed = $test_restaurant_name->save();
+        //
+        //
+        //
+        //     $this->assertTrue($executed, "Task not successfully saved to database");
+        // }
+
         function testSave()
         {
             $cuisine = "turds";
             $test_cuisine = new Cuisine($cuisine);
-            $executed = $test_cuisine->save();
+            $test_cuisine->save();
 
             $name = "Fancy Pants: eat my shorts";
             $address = "333 NE 33rd Ave";
             $hours = "12pm-10pm";
             $cost = "super expensive";
+            $cuisine_id = $test_cuisine->getId();
             $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
+
             $executed = $test_restaurant_name->save();
 
 
 
             $this->assertTrue($executed, "Task not successfully saved to database");
         }
+
 
         function testGetName()
         {

@@ -62,13 +62,15 @@
             function getRestaurant()
             {
                 $restaurants = Array();
-                $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE id = {$this->getId()};");
+                $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE cuisine_id = {$this->getId()};");
                 foreach($returned_restaurants as $restaurant) {
-                    $name = $restaurant['name'];
+                    $name = $restaurant['restaurant_name'];
                     $address = $restaurant['address'];
                     $hours = $restaurant['hours'];
                     $cost = $restaurant['cost'];
-                    $new_restaurant = new Restaurant($name, $address, $hours, $cost);
+                    $cuisine_id = $restaurant['cuisine_id'];
+                    $id = $restaurant['id'];
+                    $new_restaurant = new Restaurant($name, $address, $hours, $cost, $cuisine_id, $id);
                     array_push($restaurants, $new_restaurant);
                 }
                 return $restaurants;

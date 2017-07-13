@@ -107,33 +107,73 @@
         function testGetRestaurant()
         {
             //Arrange
-            $cuisine = "KFC";
+            $cuisine = "Mexican";
+            $cuisine2 = "whole paycheck";
             $test_cuisine = new Cuisine($cuisine);
             $test_cuisine->save();
-
-            $cuisine_id = $test_cuisine->getId();
+            $test_cuisine_id = $test_cuisine->getId();
+            $test_cuisine2 = new Cuisine($cuisine2);
+            $test_cuisine2->save();
+            $test_cuisine_id2 = $test_cuisine2->getId();
 
             $name = "ihop";
             $address = "444 NE 38th";
             $hours = "12-8";
-            $cost = "$$$$";
-            // $cuisine_id =
-            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
+            $cost = "2";
+
+            $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $test_cuisine_id);
             $test_restaurant_name->save();
 
-            $name2 = "turds";
-            $address2 = "420 NE 38th";
-            $hours2 = "12-12";
-            $cost2 = "$$$$";
-            $test_restaurant_name2 = new Restaurant($name2, $address2, $hours2, $cost2, $cuisine_id);
+            var_dump($test_restaurant_name);
+            $name2 = "cheese";
+            $address2 = "444 NE 38th";
+            $hours2 = "12-8";
+            $cost2 = "1";
+
+            $test_restaurant_name2 = new Restaurant($name2, $address2, $hours2, $cost2, $test_cuisine_id2);
             $test_restaurant_name2->save();
+            var_dump($test_restaurant_name2);
 
             //Act
             $result = $test_cuisine->getRestaurant();
-            // $test_cuisine->Restaurant($test_restaurant_name2);
 
             //Assert
-            $this->assertEquals([$name, $name2], $result);
+            $this->assertEquals([$test_restaurant_name], $result);
+
         }
+
+        // function testGetRestaurant()
+        // {
+        //     //Arrange
+        //     $cuisine = "KFC";
+        //     $test_cuisine = new Cuisine($cuisine);
+        //     $test_cuisine->save();
+        //
+        //     $cuisine_id = $test_cuisine->getId();
+        //
+        //
+        //     $name = "ihop";
+        //     $address = "444 NE 38th";
+        //     $hours = "12-8";
+        //     $cost = "$$$$";
+        //     // $cuisine_id =
+        //     $test_restaurant_name = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
+        //     $test_restaurant_name->save();
+        //
+        //     $name2 = "turds";
+        //     $address2 = "420 NE 38th";
+        //     $hours2 = "12-12";
+        //     $cost2 = "$$$$";
+        //     $test_restaurant_name2 = new Restaurant($name2, $address2, $hours2, $cost2, $cuisine_id2);
+        //     $test_restaurant_name2->save();
+        //     $cuisine_id2 = $test_cuisine2->getId();
+        //
+        //     //Act
+        //     $result = $test_cuisine->getRestaurant();
+        //     // $test_cuisine->Restaurant($test_restaurant_name2);
+        //
+        //     //Assert
+        //     $this->assertEquals([$test_restaurant_name, $test_restaurant_name2], $result);
+        // }
     }
 ?>

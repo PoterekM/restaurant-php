@@ -7,14 +7,21 @@
             private $hours;
             private $cost;
             private $cuisine_id;
+            private $id;
 
-            function __construct($name, $address, $hours, $cost, $cuisine_id)
+            function __construct($name, $address, $hours, $cost, $cuisine_id, $id = null)
             {
                 $this->name = $name;
                 $this->address = $address;
                 $this->hours = $hours;
                 $this->cost = $cost;
                 $this->cuisine_id = $cuisine_id;
+                $this->id = $id;
+            }
+
+            function getId()
+            {
+                return $this->id;
             }
 
             function setName($new_name)
@@ -88,7 +95,8 @@
                     $hours = $restaurant['hours'];
                     $cost = $restaurant['cost'];
                     $cuisine_id = $restaurant['cuisine_id'];
-                    $new_restaurant = new Restaurant($name, $address, $hours, $cost, $cuisine_id);
+                    $id = $restaurant['id'];
+                    $new_restaurant = new Restaurant($name, $address, $hours, $cost, $cuisine_id, $id);
                     array_push($restaurants, $new_restaurant);
                     ///Michelle is worried about not getting id in here
                 }
